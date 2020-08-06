@@ -21,11 +21,8 @@ class App extends Component {
     editContactModal: false
   }
   componentWillMount() {
-    axios.get('http://localhost:3001/contacts').then((response) => {
-      this.setState({
-        contacts: response.data
-      })
-    })
+    this._refreshList()
+
   }
 
   toggleNewContactModal() {
@@ -33,6 +30,7 @@ class App extends Component {
       newContactModal: !this.state.newContactModal
     })
   }
+
   toggleEditContactModal() {
     this.setState({
       editContactModal: !this.state.editContactModal
@@ -43,20 +41,46 @@ class App extends Component {
     axios.post('http://localhost:3001/contacts', this.state.newContactData).then((response) => {
       let { contacts } = this.state;
       contacts.push(response.data);
-      this.setState({contacts, newContactModal: false, newContactData: {
+
+      this.setState({
+        contacts, newContactModal: false, newContactData: {
           title: '',
           rating: ''
-        }})
+        }
+      })
     })
   }
-  updateContact(){
-    
+  updateContact() {
+    let { title, rating } = this.state.editContactData;
+
+    axios.put('http://localhost:3001/contacts/' + this.state.editContactData.id, {
+      title, rating
+    }).then((response) => {
+      console.log(response.data);
+      this._refreshList()
+      this.setState({
+        editContactModal: false, editContactData: { id: '', title: '', rating: '' }
+      })
+    })
   }
-    editContact(id, title, rating){
+  editContact(id, title, rating) {
     this.setState({
-      editContact: {id, title, rating}
-    })  
-    }
+      editContactData: { id, title, rating }, editContactModal: !this.state.editContactModal
+    })
+  }
+  deleteContact(id) {
+    axios.delete('http://localhost:3001/contacts/' + id).then((response) => {
+    this._refreshList()
+    })
+  }
+  _refreshList() {
+    axios.get('http://localhost:3001/contacts').then((response) => {
+      this.setState({
+        contacts: response.data
+      })
+    })
+  }
+
   render() {
     let contacts = this.state.contacts.map((contact) => {
       return (
@@ -66,7 +90,7 @@ class App extends Component {
           <td>{contact.rating}</td>
           <td>
             <Button color="success" size="sm" className="mr-2" onClick={this.editContact.bind(this, contact.id, contact.title, contact.rating)}>Edit</Button>
-            <Button color="danger" size="sm">Delete</Button>
+            <Button color="danger" size="sm" onClick={this.deleteContact.bind(this, contact.id)}>Delete</Button>
           </td>
         </tr>
       )
@@ -77,6 +101,7 @@ class App extends Component {
 
         <Button className='my-3' color="primary" onClick={this.toggleNewContactModal.bind(this)}>Add Contact</Button>
         <Modal isOpen={this.state.newContactModal} toggle={this.toggleNewContactModal.bind(this)}>
+
           <ModalHeader toggle={this.toggleNewContactModal.bind(this)}>Add a new contact</ModalHeader>
           <ModalBody>
             <FormGroup>
@@ -102,7 +127,7 @@ class App extends Component {
           </ModalFooter>
         </Modal>
 
-<Modal isOpen={this.state.editContactModal} toggle={this.toggleEditContactModal.bind(this)}>
+        <Modal isOpen={this.state.editContactModal} toggle={this.toggleEditContactModal.bind(this)}>
           <ModalHeader toggle={this.toggleEditContactModal.bind(this)}>Edit a new contact</ModalHeader>
           <ModalBody>
             <FormGroup>
