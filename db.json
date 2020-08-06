@@ -1,34 +1,14 @@
 {
   "contacts": [
     {
-      "title": "212",
-      "rating": "2121",
+      "name": "Ruslan",
+      "phone": "+380990734570",
       "id": 1
     },
     {
-      "title": "231",
-      "rating": "213",
+      "name": "Sam",
+      "phone": "+380990734580",
       "id": 2
-    },
-    {
-      "title": "qwewq",
-      "rating": "ewqe",
-      "id": 3
-    },
-    {
-      "title": "123213",
-      "rating": "ewqe",
-      "id": 4
-    },
-    {
-      "title": "wqewq",
-      "rating": "ewqewq",
-      "id": 5
-    },
-    {
-      "title": "21321",
-      "rating": "weqewq",
-      "id": 6
     }
   ]
 }
