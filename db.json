@@ -1,14 +1,19 @@
 {
   "contacts": [
     {
-      "name": "Ruslan",
-      "phone": "+380990734570",
-      "id": 1
+      "name": "Amigo",
+      "phone": "+38099565656",
+      "id": 3
+    },
+    {
+      "name": "Friend",
+      "phone": "+38099565564",
+      "id": 4
     },
     {
       "name": "Sam",
-      "phone": "+380990734580",
-      "id": 2
+      "phone": "+380965456454",
+      "id": 5
     }
   ]
 }

@@ -105,7 +105,7 @@ class App extends Component {
           <ModalHeader toggle={this.toggleNewContactModal.bind(this)}>Add a new contact</ModalHeader>
           <ModalBody>
             <FormGroup>
-              <Label for="name">name</Label>
+              <Label for="name">Name</Label>
               <Input id="name" value={this.state.newContactData.name} onChange={(e) => {
                 let { newContactData } = this.state;
                 newContactData.name = e.target.value
@@ -113,7 +113,7 @@ class App extends Component {
               }} />
             </FormGroup>
             <FormGroup>
-              <Label for="phone">phone</Label>
+              <Label for="phone">Phone</Label>
               <Input id="phone" value={this.state.newContactData.phone} onChange={(e) => {
                 let { newContactData } = this.state;
                 newContactData.phone = e.target.value
@@ -131,7 +131,7 @@ class App extends Component {
           <ModalHeader toggle={this.toggleEditContactModal.bind(this)}>Edit a new contact</ModalHeader>
           <ModalBody>
             <FormGroup>
-              <Label for="name">name</Label>
+              <Label for="name">Name</Label>
               <Input id="name" value={this.state.editContactData.name} onChange={(e) => {
                 let { editContactData } = this.state;
                 editContactData.name = e.target.value
@@ -139,7 +139,7 @@ class App extends Component {
               }} />
             </FormGroup>
             <FormGroup>
-              <Label for="phone">phone</Label>
+              <Label for="phone">Phone</Label>
               <Input id="phone" value={this.state.editContactData.phone} onChange={(e) => {
                 let { editContactData } = this.state;
                 editContactData.phone = e.target.value
