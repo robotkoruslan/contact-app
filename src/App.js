@@ -172,5 +172,3 @@ class App extends Component {
 }
 export default App;
 
-
-//41.03
